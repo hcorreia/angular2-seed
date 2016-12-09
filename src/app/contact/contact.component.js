@@ -8,8 +8,13 @@ import CustomValidators from '../forms/CustomValidators';
   styleUrls: ['./contact-component.css']
 })
 export class ContactComponent implements OnInit {
+  static get parameters() {
+    return [[FormBuilder]];
+  }
   contactForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(formBuilder: FormBuilder) {
+    this.formBuilder = formBuilder;
+  }
 
   ngOnInit() {
     this.contactForm = this.formBuilder.group({

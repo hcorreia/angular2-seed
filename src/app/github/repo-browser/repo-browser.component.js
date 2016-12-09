@@ -8,8 +8,12 @@ import { GithubService } from '../shared/github.service';
   styleUrls: ['./repo-browser.component.css']
 })
 export class RepoBrowserComponent {
-
-  constructor(private router: Router, private github: GithubService) {
+  static get parameters() {
+    return [[Router], [GithubService]];
+  }
+  constructor(router: Router, github: GithubService) {
+    this.router = router;
+    this.github = github;
   }
 
   searchForOrg(orgName: string) {

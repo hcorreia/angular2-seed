@@ -23,4 +23,3 @@ export const rootRouterConfig: Routes = [
   },
   { path: 'contact', component: ContactComponent }
 ];
-

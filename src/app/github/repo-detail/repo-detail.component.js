@@ -8,11 +8,16 @@ import {GithubService} from '../shared/github.service';
   templateUrl: './repo-detail.component.html'
 })
 export class RepoDetailComponent implements OnInit {
-  private org:string;
-  private repo:string;
-  public repoDetails:any = {};
+  org: string;
+  repo: string;
+  repoDetails: any = {};
 
-  constructor(public github:GithubService, private route:ActivatedRoute) {
+  static get parameters() {
+    return [[GithubService], [ActivatedRoute]];
+  }
+  constructor(github: GithubService, route: ActivatedRoute) {
+    this.github = github;
+    this.route = route;
   }
 
   ngOnInit() {

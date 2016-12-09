@@ -1,3 +1,4 @@
+/* eslint-env node */
 var webpack = require('webpack');
 var path = require('path');
 var webpackMerge = require('webpack-merge');
@@ -5,7 +6,7 @@ var webpackMerge = require('webpack-merge');
 // Webpack Config
 var webpackConfig = {
   entry: {
-    'main': './src/main.browser.ts',
+    'main': './src/main.browser.js',
   },
 
   output: {
@@ -26,14 +27,14 @@ var webpackConfig = {
 
   module: {
     loaders: [
-      // .ts files for TypeScript
       {
-        test: /\.ts$/,
+        test: /\.js$/,
         loaders: [
-          'awesome-typescript-loader',
+          'babel-loader',
           'angular2-template-loader',
-          'angular2-router-loader'
-        ]
+          // 'angular2-router-loader',
+        ],
+        exclude: /node_modules/,
       },
       { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
       { test: /\.html$/, loader: 'raw-loader' }
@@ -54,7 +55,7 @@ var defaultConfig = {
   },
 
   resolve: {
-    extensions: [ '.ts', '.js' ],
+    extensions: [ '.js' ],
     modules: [ path.resolve(__dirname, 'node_modules') ]
   },
 

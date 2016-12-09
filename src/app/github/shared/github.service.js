@@ -4,7 +4,12 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GithubService {
-  constructor(private http: Http) {}
+  static get parameters() {
+    return [[Http]];
+  }
+  constructor(http: Http) {
+    this.http = http;
+  }
 
   getOrg(org: string) {
     return this.makeRequest(`orgs/${org}`);
@@ -18,7 +23,7 @@ export class GithubService {
     return this.makeRequest(`repos/${org}/${repo}`);
   }
 
-  private makeRequest(path: string) {
+  makeRequest(path: string) {
     let params = new URLSearchParams();
     params.set('per_page', '100');
 
